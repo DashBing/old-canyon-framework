@@ -1,5 +1,5 @@
-#ifndef _TYPES_H
-#define _TYPES_H
+#ifndef _CVM_TYPES_H
+#define _CVM_TYPES_H
 
 typedef unsigned char UINTB1, UINT8;
 typedef unsigned short UINTB2, UINT16;
