@@ -10,7 +10,8 @@ typedef enum command_index{
 
     // 保护模式指令 与 系统调用指令
     set_prot = 0x10,  // 设置保护模式索引表
-    jmp_protect,  // 跳转并开始保护
+    jmp_prot,  // 跳转并开始保护
+    stop_prot,  // 终止保护模式
     stop,  // 中断程序 按照中断信息码查询程序使用内核镜像映射的中断处理程序地址
     call,  // 跳转到内核区域的虚拟地址, 控制权交给内核空间, 并暂时转到内核模式
 
@@ -19,6 +20,8 @@ typedef enum command_index{
     jmp_ti_ifn,
     jmp_tr_if,
     jmp_tr_ifn,
+    jmp_tm_if,
+    jmp_tm_ifn,
 
     // 基本数学运算
     l_sal = 0x30,  // 左移运算
