@@ -10,9 +10,10 @@ typedef struct cmd_two_res{  // 用于同时存储两个寄存器地址的结构
 } cmd_resAB;
 
 typedef union cmd_union_data{  // 共用区域定义
+    UINT8 data8;
     cmd_two_res res;   // 寄存器地址
     UINT64 mem;   // 内存地址
-    UINT64 data;  // 数据
+    UINT64 data64;  // 数据
 } cmd_data;
 
 typedef struct command_data{

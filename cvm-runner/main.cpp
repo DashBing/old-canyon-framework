@@ -43,6 +43,7 @@ int main(int args, char * argv[]){
             }
         }
         VM mainvm;
+        // F
         free(mem);
     }
     else{

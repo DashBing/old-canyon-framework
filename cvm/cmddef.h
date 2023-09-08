@@ -3,7 +3,8 @@
 
 typedef enum command_index{
     // mov指令
-    mov_itr = 0x1,  // 存数据到默认寄存器
+    mov_i8tr = 0x1,  // 存数据到默认寄存器
+    mov_i64tr,
     mov_fm,  // 从内存地址读取数据到默认寄存器
     mov_tm,  // 从默认寄存器读取数据(低8位)，写入到内存地址
     mov_rtr,  // 从寄存器地址读取数据，写入到内存地址
