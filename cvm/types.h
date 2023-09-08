@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+extern "C++" {
+#endif
+
 #ifndef _CVM_TYPES_H
 #define _CVM_TYPES_H
 
@@ -6,4 +10,8 @@ typedef unsigned short UINTB2, UINT16;
 typedef unsigned int UINTB4, UINT32;
 typedef unsigned long long UINTB8, UINT64;
 
+#endif
+
+#ifdef __cplusplus
+}
 #endif

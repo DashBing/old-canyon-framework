@@ -84,9 +84,12 @@ class VM{
         }
     }
     void set_mem(UINT64 index, UINT8 value, UINT64 start=0, UINT64 end=memlen-1){}
-    UINT8 get_mem(UINT64 index, UINT64 start=0, UINT64 end=memlen-1){}
+    UINT8 get_mem(UINT64 index, UINT64 start=0, UINT64 end=memlen-1){
+        return(0);
+    }
     void run_command(command cmd);
     void run(UINT64 entry0);
+    ~VM(){}
 };
 
 #include "runners.hpp"

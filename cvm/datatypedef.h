@@ -1,3 +1,7 @@
+#ifdef __cplusplus
+extern "C++" {
+#endif
+
 #include "types.h"
 
 #ifndef _CVM_DATATYPEDEF_H
@@ -10,10 +14,10 @@ typedef struct cmd_two_res{  // 用于同时存储两个寄存器地址的结构
 } cmd_resAB;
 
 typedef union cmd_union_data{  // 共用区域定义
-    UINT8 data8;
+    UINT8 data8;  // 8位数据
     cmd_two_res res;   // 寄存器地址
     UINT64 mem;   // 内存地址
-    UINT64 data64;  // 数据
+    UINT64 data64;  // 64位数据
 } cmd_data;
 
 typedef struct command_data{
@@ -22,4 +26,8 @@ typedef struct command_data{
 } command;
 
 #pragma pack()
+#endif
+
+#ifdef __cplusplus
+}
 #endif
