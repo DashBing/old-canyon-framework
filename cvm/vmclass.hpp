@@ -19,7 +19,7 @@ class VM{
     public:
     VM(){}
     VM(char * mem_i, UINT64 memlen_i){
-        set_mem(mem_i, memlen_i);
+        set_mem_adr(mem_i, memlen_i);
     }
     VM(UINT64 memlen_i){
         mem = (char *)calloc(memlen_i, sizeof(char));
@@ -31,7 +31,7 @@ class VM{
         res = {};
         mem = 0;
     }
-    void set_mem(char * mem_i, UINT64 memlen_i){
+    void set_mem_adr(char * mem_i, UINT64 memlen_i){
         mem = mem_i;
         memlen = memlen_i;
     }
@@ -48,7 +48,7 @@ class VM{
             res [a - 1] |= val;
         }
     }
-    UINT8 get_mem_chr(UINT16 index){
+    UINT8 get_res_chr(UINT16 index){
         UINT16 a, b;
         UINT64 val = 0, g = 0xff;
         a = index / 8;
@@ -82,9 +82,13 @@ class VM{
             return(res[index]);
         }
     }
-    void run_command();
+    void set_mem(UINT64 index, UINT8 value, UINT64 start=0, UINT64 end=memlen-1){}
+    UINT8 get_mem(UINT64 index, UINT64 start=0, UINT64 end=memlen-1){}
+    void run_command(command cmd);
     void run(UINT64 entry0);
 };
+
+#include "runners.hpp"
 
 #ifdef vm_template
 #undef vm_template
