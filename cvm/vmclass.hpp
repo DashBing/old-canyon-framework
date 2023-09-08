@@ -4,8 +4,6 @@
 #ifndef _CVM_VMCLASS_HPP
 #define _CVM_VMCLASS_HPP
 
-//#define res_len_type UINT16
-
 #ifndef vm_template
 #define vm_template template<UINT16 res_size=16>
 #endif
@@ -88,7 +86,8 @@ class VM{
     void run(UINT64 entry0);
 };
 
-//#undef res_len_type
+#ifdef vm_template
 #undef vm_template
+#endif
 
 #endif
