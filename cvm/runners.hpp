@@ -10,8 +10,6 @@
 #define _CVM_RUNNERS_HPP_INLINEDEF_VM_TEMP
 #endif
 
-extern class VM;
-
 vm_template
 void VM<res_size>::run_command(command cmd){
     enum cmd_data tmp = cmd.cmd;

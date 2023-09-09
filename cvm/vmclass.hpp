@@ -6,10 +6,10 @@
 #define _CVM_VMCLASS_HPP
 
 #ifndef vm_template
-#define vm_template template<UINT16 res_size=16>
+#define vm_template template<UINT16 res_size>
 #endif
 
-vm_template
+template<UINT16 res_size=16>
 class VM{
     public:
     static bool prot;  // 是否开保护模式
@@ -83,9 +83,18 @@ class VM{
             return(res[index]);
         }
     }
-    void set_mem(UINT64 index, UINT8 value, UINT64 start=0, UINT64 end=memlen-1){}
+    void set_mem(UINT64 index, UINT8 value, UINT64 start=0, UINT64 end=memlen-1){
+        if(index+start <= end){
+            mem[index+start] = value;
+        }
+    }
     UINT8 get_mem(UINT64 index, UINT64 start=0, UINT64 end=memlen-1){
-        return(0);
+        if(index+start <= end){
+            return(mem[index+start]);
+        }
+        else{
+            return(0);
+        }
     }
     void run_command(command cmd);
     void run(UINT64 entry0);
