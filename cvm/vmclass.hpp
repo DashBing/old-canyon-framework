@@ -122,7 +122,7 @@ class VM{
             return(true);
         }
     }
-    void run_command(command cmd);
+    bool run_command(command cmd);
     void run(UINT64 entry0);
     ~VM(){}
 };

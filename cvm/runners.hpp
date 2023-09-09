@@ -7,12 +7,12 @@
 #define _CVM_RUNNERS_HPP
 
 #ifndef vm_template
-#define vm_template template<UINT16 res_size=16>
+#define vm_template template<UINT16 res_size>
 #define _CVM_RUNNERS_HPP_INLINEDEF_VM_TEMP
 #endif
 
 vm_template
-void VM<res_size>::run_command(command cmd){
+bool VM<res_size>::run_command(command cmd){
     enum cmd_data tmp = cmd.cmd;
     switch (tmp){
 
@@ -37,35 +37,47 @@ void VM<res_size>::run_command(command cmd){
 
 
 
+    case stop:
+        return(true);
+        break;
+
+
+
     case jmp_ti_if:
         if(get_res(RES_DE)){
             set_res(RES_LN, cmd.data.data64);
         }
+        return(false);
         break;
     case jmp_ti_ifn:
         if(!(get_res(RES_DE))){
             set_res(RES_LN, cmd.data.data64);
         }
+        return(false);
         break;
     case jmp_tr_if:
         if(get_res(cmd.data.res.a)){
             set_res(RES_LN, cmd.data.res.b);
         }
+        return(false);
         break;
     case jmp_tr_ifn:
         if(!(get_res(cmd.data.res.a))){
             set_res(RES_LN, cmd.data.res.b);
         }
+        return(false);
         break;
     case jmp_tm_if:
         if(get_res(RES_DE)){
             set_res(RES_LN, get_mem(cmd.data.mem));
         }
+        return(false);
         break;
     case jmp_tm_ifn:
         if(!(get_res(RES_DE))){
             set_res(RES_LN, get_mem(cmd.data.mem));
         }
+        return(false);
         break;
 
 
@@ -97,15 +109,64 @@ void VM<res_size>::run_command(command cmd){
     case c_eq8:
         set_res_chr(cmd.data.res.c, get_res_chr(cmd.data.res.a)==get_res_chr(cmd.data.res.b));
         break;
+    case c_eq64:
+        set_res_chr(cmd.data.res.c, get_res(cmd.data.res.a)==get_res(cmd.data.res.b));
+        break;
+    case c_high8:
+        set_res_chr(cmd.data.res.c, get_res_chr(cmd.data.res.a)>get_res_chr(cmd.data.res.b));
+        break;
+    case c_high64:
+        set_res_chr(cmd.data.res.c, get_res(cmd.data.res.a)>get_res(cmd.data.res.b));
+        break;
+    case c_low8:
+        set_res_chr(cmd.data.res.c, get_res_chr(cmd.data.res.a)<get_res_chr(cmd.data.res.b));
+        break;
+    case c_low64:
+        set_res_chr(cmd.data.res.c, get_res(cmd.data.res.a)<get_res(cmd.data.res.b));
+        break;
+
+
+
+    case b_add8:
+        set_res_chr(cmd.data.res.c, get_res_chr(cmd.data.res.a)+get_res_chr(cmd.data.res.b));
+        break;
+    case b_add64:
+        set_res(cmd.data.res.c, get_res(cmd.data.res.a)+get_res(cmd.data.res.b));
+        break;
+    case b_sub8:
+        set_res_chr(cmd.data.res.c, get_res_chr(cmd.data.res.a)-get_res_chr(cmd.data.res.b));
+        break;
+    case b_sub64:
+        set_res(cmd.data.res.c, get_res(cmd.data.res.a)-get_res(cmd.data.res.b));
+        break;
+    case b_mcl8:
+        set_res_chr(cmd.data.res.c, get_res_chr(cmd.data.res.a)*get_res_chr(cmd.data.res.b));
+        break;
+    case b_mcl64:
+        set_res(cmd.data.res.c, get_res(cmd.data.res.a)*get_res(cmd.data.res.b));
+        break;
+    case b_div8:
+        set_res_chr(cmd.data.res.c, get_res_chr(cmd.data.res.a)/get_res_chr(cmd.data.res.b));
+        break;
+    case b_div64:
+        set_res(cmd.data.res.c, get_res(cmd.data.res.a)/get_res(cmd.data.res.b));
+        break;
 
     default:
         break;
     }
+    set_res(RES_LN, get_res(RES_LN) + 1);
+    return(false);
 }
 
 vm_template
 void VM<res_size>::run(UINT64 entry0){
-    //
+    set_res(RES_LN, entry0);
+    bool tmp = 0;
+    while (!tmp){
+        command * dd = (command *)(mem+get_res(RES_LN));
+        tmp = run_command(*dd);
+    }
 }
 
 #ifdef _CVM_RUNNERS_HPP_INLINEDEF_VM_TEMP
