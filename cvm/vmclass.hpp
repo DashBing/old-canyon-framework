@@ -41,7 +41,7 @@ class VM{
         UINT16 a, b;
         UINT64 val = value;
         a = index / 8;
-        if(!(RES_RN(index)==RES_PR && !(isin_kernel(get_res(RES_LN))))){
+        if(!(RES_RN(a)==RES_PR && !(isin_kernel(get_res(RES_LN))))){
             b = index % 8;
             val <<= (8 * (7 - b));
             if(a == 0){
@@ -89,7 +89,7 @@ class VM{
         }
     }
     void set_mem(UINT64 index, UINT8 value, UINT64 start=0, UINT64 end=memlen-1){
-        if(!(isin_kernel(index) && !(isin_kernel(get_res(RES_LN))))){
+        if(!(isin_kernel(index+start) && !(isin_kernel(get_res(RES_LN))))){
             if(index+start <= end){
                 mem[index+start] = value;
             }
