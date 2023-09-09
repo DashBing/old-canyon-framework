@@ -1,6 +1,7 @@
 #include "types.h"
 #include "datatypedef.h"
 #include "cmddef.h"
+#include "resdef.h"
 
 #ifndef _CVM_VMCLASS_HPP
 #define _CVM_VMCLASS_HPP
@@ -40,13 +41,15 @@ class VM{
         UINT16 a, b;
         UINT64 val = value;
         a = index / 8;
-        b = index % 8;
-        val <<= (8 * (7 - b));
-        if(a == 0){
-            prot_res |= val;
-        }
-        else{
-            res [a - 1] |= val;
+        if(!(RES_RN(index)==RES_PR && !(isin_kernel(get_res(RES_LN))))){
+            b = index % 8;
+            val <<= (8 * (7 - b));
+            if(a == 0){
+                prot_res |= val;
+            }
+            else{
+                res [a - 1] |= val;
+            }
         }
     }
     UINT8 get_res_chr(UINT16 index){  // 读寄存器(按字节)
@@ -66,12 +69,14 @@ class VM{
         return((UINT8)val);
     }
     void set_res(UINT16 index, UINT64 value){  // 写寄存器
-        index = index / 8;
-        if(index == 0){
-            prot_res = value;
-        }
-        else{
-            res[index - 1] = value;
+        if(!(index==RES_PR && !(isin_kernel(get_res(RES_LN))))){
+            index = index / 8;
+            if(index == 0){
+                prot_res = value;
+            }
+            else{
+                res[index - 1] = value;
+            }
         }
     }
     UINT64 get_res(UINT16 index){  // 读寄存器
@@ -84,8 +89,10 @@ class VM{
         }
     }
     void set_mem(UINT64 index, UINT8 value, UINT64 start=0, UINT64 end=memlen-1){
-        if(index+start <= end){
-            mem[index+start] = value;
+        if(!(isin_kernel(index) && !(isin_kernel(get_res(RES_LN))))){
+            if(index+start <= end){
+                mem[index+start] = value;
+            }
         }
     }
     UINT8 get_mem(UINT64 index, UINT64 start=0, UINT64 end=memlen-1){
@@ -94,6 +101,25 @@ class VM{
         }
         else{
             return(0);
+        }
+    }
+    bool isin_kernel(UINT64 adr){
+        if(prot){
+            UINT64 index = get_res(RES_PR);
+            UINT64 a=0, b=0, tmp=index;
+            for(;index<tmp+8;index++){
+                a |= get_mem(index);
+                a<<=8;
+            }
+            tmp=index;
+            for(;index<tmp+8;index++){
+                b |= get_mem(index);
+                b<<=8;
+            }
+            return((adr>=a) && (adr<=b));
+        }
+        else{
+            return(true);
         }
     }
     void run_command(command cmd);

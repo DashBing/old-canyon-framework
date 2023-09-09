@@ -6,12 +6,14 @@ extern "C++" {
 #define _CVM_CMDDEF_H
 
 typedef enum command_index{
+    null = 0x0,
     // mov指令
     mov_i8tr = 0x1,  // 存数据到默认寄存器
     mov_i64tr,
     mov_fm,  // 从内存地址读取数据到默认寄存器
     mov_tm,  // 从默认寄存器读取数据(低8位)，写入到内存地址
-    mov_rtr,  // 从寄存器地址读取数据，写入到内存地址
+    mov_r8tr,  // 从寄存器地址读取数据，写入到内存地址
+    mov_r64tr,
 
     // 保护模式指令 与 系统调用指令
     set_prot = 0x10,  // 设置保护模式索引表
@@ -29,21 +31,34 @@ typedef enum command_index{
     jmp_tm_ifn,
 
     // 基本数学运算
-    l_sal = 0x30,  // 左移运算
-    l_sar,  // 右移运算
+    l_sal8 = 0x30,  // 左移运算
+    l_sal64,
+    l_sar8,  // 右移运算
+    l_sar64,
+
     l_and,
     l_or,
-    l_xor,
-    l_not,
 
-    c_eq,
-    c_high,
-    c_low,
+    l_xor8,
+    l_xor64,
+    l_not8,
+    l_not64,  // 0x39
 
-    b_add,  // 0x39
-    b_sub,
-    b_mcl,
-    b_div,  // 0x3c
+    c_eq8,
+    c_eq64,
+    c_high8,
+    c_high64,
+    c_low8,
+    c_low64,
+
+    b_add8,  // 0x40
+    b_add64,
+    b_sub8,
+    b_sub64,
+    b_mcl8,
+    b_mcl64,
+    b_div8,
+    b_div64,  // 0x47
 } cmd_index;
 
 #endif
