@@ -1,3 +1,4 @@
+#include <cstdio>
 #include "vmclass.hpp"
 #include "cmddef.h"
 #include "datatypedef.h"
@@ -150,6 +151,24 @@ bool VM<res_size>::run_command(command cmd){
         break;
     case b_div64:
         set_res(cmd.data.res.c, get_res(cmd.data.res.a)/get_res(cmd.data.res.b));
+        break;
+
+
+
+    case io_im:
+        set_mem(cmd.data.mem, getchar());
+        break;
+    case io_ir:
+        set_res_chr(cmd.data.res.a, getchar());
+        break;
+    case io_oi:
+        putchar(cmd.data.data8);
+        break;
+    case io_or:
+        putchar(get_res_chr(cmd.data.res.a));
+        break;
+    case io_om:
+        putchar(get_mem(cmd.data.mem));
         break;
 
     default:
