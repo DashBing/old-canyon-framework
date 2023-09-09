@@ -11,6 +11,7 @@ extern "C++" {
 typedef struct cmd_two_res{  // 用于同时存储两个寄存器地址的结构体
     UINT16 a;  // 寄存器A
     UINT16 b;  // 寄存器B
+    UINT16 c;
 } cmd_resAB;
 
 typedef union cmd_union_data{  // 共用区域定义

@@ -38,11 +38,8 @@ typedef enum command_index{
 
     l_and,
     l_or,
-
-    l_xor8,
-    l_xor64,
-    l_not8,
-    l_not64,  // 0x39
+    l_xor,
+    l_not,  // 0x37
 
     c_eq8,
     c_eq64,
@@ -51,14 +48,14 @@ typedef enum command_index{
     c_low8,
     c_low64,
 
-    b_add8,  // 0x40
+    b_add8,  // 0x3e
     b_add64,
     b_sub8,
     b_sub64,
     b_mcl8,
     b_mcl64,
     b_div8,
-    b_div64,  // 0x47
+    b_div64,  // 0x45
 } cmd_index;
 
 #endif

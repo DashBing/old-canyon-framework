@@ -71,16 +71,31 @@ void VM<res_size>::run_command(command cmd){
 
 
     case l_sal8:
-        set_res_chr(RES_DE, get_res_chr(cmd.data.res.a)<<get_res_chr(cmd.data.res.b));
+        set_res_chr(cmd.data.res.c, get_res_chr(cmd.data.res.a)<<get_res_chr(cmd.data.res.b));
         break;
     case l_sal64:
-        set_res(RES_DE, get_res(cmd.data.res.a)<<get_res_chr(cmd.data.res.b));
+        set_res(cmd.data.res.c, get_res(cmd.data.res.a)<<get_res_chr(cmd.data.res.b));
         break;
     case l_sar8:
-        set_res_chr(RES_DE, get_res_chr(cmd.data.res.a)>>get_res_chr(cmd.data.res.b));
+        set_res_chr(cmd.data.res.c, get_res_chr(cmd.data.res.a)>>get_res_chr(cmd.data.res.b));
         break;
     case l_sar64:
-        set_res(RES_DE, get_res(cmd.data.res.a)>>get_res_chr(cmd.data.res.b));
+        set_res(cmd.data.res.c, get_res(cmd.data.res.a)>>get_res_chr(cmd.data.res.b));
+        break;
+    case l_and:
+        set_res_chr(cmd.data.res.c, get_res_chr(cmd.data.res.a)&get_res_chr(cmd.data.res.b));
+        break;
+    case l_or:
+        set_res_chr(cmd.data.res.c, get_res_chr(cmd.data.res.a)|get_res_chr(cmd.data.res.b));
+        break;
+    case l_xor:
+        set_res_chr(cmd.data.res.c, get_res_chr(cmd.data.res.a)^get_res_chr(cmd.data.res.b));
+        break;
+    case l_not:
+        set_res_chr(cmd.data.res.b, ~(get_res_chr(cmd.data.res.a)));
+        break;
+    case c_eq8:
+        set_res_chr(cmd.data.res.c, get_res_chr(cmd.data.res.a)==get_res_chr(cmd.data.res.b));
         break;
 
     default:
