@@ -42,7 +42,8 @@ int main(int args, char * argv[]){
                 memlen += sizeof(command);
             }
         }
-        VM mainvm;
+        VM mainvm(mem, mem_reallen);
+        mainvm.run(0);
         // F
         free(mem);
     }
