@@ -76,6 +76,12 @@ void VM<res_size>::run_command(command cmd){
     case l_sal64:
         set_res(RES_DE, get_res(cmd.data.res.a)<<get_res_chr(cmd.data.res.b));
         break;
+    case l_sar8:
+        set_res_chr(RES_DE, get_res_chr(cmd.data.res.a)>>get_res_chr(cmd.data.res.b));
+        break;
+    case l_sar64:
+        set_res(RES_DE, get_res(cmd.data.res.a)>>get_res_chr(cmd.data.res.b));
+        break;
 
     default:
         break;
