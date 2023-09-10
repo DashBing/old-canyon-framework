@@ -12,5 +12,6 @@ def main(args:list):
             a = a + r
 
 if __name__ == "__main__":
-    del argv[0]
-    main(argv)
+    print(precom(input()))
+    #del argv[0]
+    #main(argv)
