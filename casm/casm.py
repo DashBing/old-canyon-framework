@@ -25,6 +25,7 @@ def tobytes(code:list) -> bytearray:
             i[j] = i[j].upper()
         match code[0]:
             case "MOV":
+                pass
 
 def compile(code:str) -> bytearray:
     pass
