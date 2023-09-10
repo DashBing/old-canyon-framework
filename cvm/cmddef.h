@@ -14,6 +14,8 @@ typedef enum command_index{
     mov_tm,  // 从默认寄存器读取数据(低8位)，写入到内存地址
     mov_r8tr,  // 从寄存器地址读取数据，写入到内存地址
     mov_r64tr,
+    mov_rmtr,
+    mov_rtrm,
 
     // 保护模式指令 与 系统调用指令
     set_prot = 0x10,  // 设置保护模式索引表

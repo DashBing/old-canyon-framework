@@ -35,6 +35,13 @@ bool VM<res_size>::run_command(command cmd){
     case mov_r64tr:
         set_res(cmd.data.res.b, get_res(cmd.data.res.a));
         break;
+    case mov_rmtr:
+        set_res_chr(cmd.data.res.b, get_mem(get_res(cmd.data.res.a)));
+        break;
+    case mov_rtrm:
+        set_mem(get_res(cmd.data.res.b), get_res_chr(cmd.data.res.a));
+        break;
+
 
 
 

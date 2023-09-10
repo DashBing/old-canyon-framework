@@ -19,7 +19,12 @@ def precom(code:str) -> list[list[str, ], ]:  # 按照换行分隔 并删除注�
     return(code)
 
 def tobytes(code:list) -> bytearray:
-    pass
+    s = ""
+    for i in code:
+        for j in range(len(i)):
+            i[j] = i[j].upper()
+        match code[0]:
+            case "MOV":
 
 def compile(code:str) -> bytearray:
     pass
