@@ -22,13 +22,18 @@ def precom(code:str) -> list[list[str, ], ]:  # 按照换行分隔 并删除注�
         code[i] = code[i].split(" ")
 
 
+
         extens = []
         tmpl = []
         tmp = False
         for j in range(len(code[i])):
             if code[i][j] != "":
+                if code[i][j][0] in str_sign and code[i][j][-1] in str_sign:
+                    extens.append([j])
+                    continue
                 if code[i][j][0] in str_sign or code[i][j][-1] in str_sign:
                     if tmp:
+                        tmpl.append(j)
                         extens.append(tmpl)
                         tmpl = []
                     tmp = not(tmp)
