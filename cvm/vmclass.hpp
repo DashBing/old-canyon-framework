@@ -90,14 +90,16 @@ class VM{
             return(res[index]);
         }
     }
-    void set_mem(UINT64 index, UINT8 value, UINT64 start=0, UINT64 end=memlen-1){
+    void set_mem(UINT64 index, UINT8 value, UINT64 start=0, UINT64 end=0){
+        if(end==0)end=memlen-1;  // 注意, 有可能导致安全问题, 注意防护
         if(!(isin_kernel(index+start) && !(isin_kernel(get_res(RES_LN))))){
             if(index+start <= end){
                 mem[index+start] = value;
             }
         }
     }
-    UINT8 get_mem(UINT64 index, UINT64 start=0, UINT64 end=memlen-1){
+    UINT8 get_mem(UINT64 index, UINT64 start=0, UINT64 end=0){
+        if(end==0)end=memlen-1;  // 注意, 有可能导致安全问题, 注意防护
         if(index+start <= end){
             return(mem[index+start]);
         }
