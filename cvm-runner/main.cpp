@@ -11,10 +11,10 @@ using namespace std;
 #pragma message "The Project is compiling on the Win32 platform"
 #elif defined(__ANDROID__)
 #pragma message "The Project is compiling on the Android platform"
-#error Error: This Project can't run on the Android platform!
+#error Error: This Project can not run on the Android platform!
 #elif defined(__APPLE__)
 #pragma message "The Project is compiling on the Apple platform"
-#error Error: This Project can't run on the Apple platform!
+#error Error: This Project can not run on the Apple platform!
 #elif defined(_linux)
 #pragma message "The Project is compiling on the Linux platform"
 #elif defined(_unix) || defined(_unix_)
