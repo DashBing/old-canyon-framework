@@ -7,19 +7,15 @@
 #ifndef _CVM_VMCLASS_HPP
 #define _CVM_VMCLASS_HPP
 
+static bool prot;  // 是否开保护模式
+static UINT64 memlen;  // 内存大小(字节)
+static UINT64 prot_res;  // 第一个寄存器(特殊所以分离)
+static char * mem;  // 内存地址
+
 template<UINT16 res_size=16>
 class VM{
     public:
-    /* static bool prot;  // 是否开保护模式
-    static UINT64 memlen;  // 内存大小(字节)
-    static UINT64 prot_res;  // 第一个寄存器(特殊所以分离)
     UINT64 res[res_size - 1];  // 寄存器数组, 大小由模板决定
-    static char * mem;  // 内存地址 */
-    bool prot;
-    UINT64 memlen;
-    UINT64 prot_res;
-    UINT64 res[res_size - 1];
-    char * mem;
     public:
     VM(){}
     VM(char * mem_i, UINT64 memlen_i){
