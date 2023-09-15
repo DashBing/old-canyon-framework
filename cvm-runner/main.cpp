@@ -7,7 +7,7 @@ using namespace std;
 
 #define cases(c) case c: mem_reallen *= 1024;
 
-#if defined(_WIN64) && !defined(_WIN32)
+#if defined(_WIN32) && !defined(_WIN64)
 #pragma message "The Project is compiling on the Win32 platform"
 #elif defined(__ANDROID__)
 #pragma message "The Project is compiling on the Android platform"
