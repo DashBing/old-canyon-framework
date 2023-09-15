@@ -7,6 +7,20 @@ using namespace std;
 
 #define cases(c) case c: mem_reallen *= 1024;
 
+#if defined(_WIN64) && !defined(_WIN32)
+#pragma message "The Project is compiling on the Win32 platform"
+#elif defined(__ANDROID__)
+#pragma message "The Project is compiling on the Android platform"
+#elif defined(__APPLE__)
+#pragma message "The Project is compiling on the Apple platform"
+#elif defined(_linux)
+#pragma message "The Project is compiling on the Linux platform"
+#elif defined(_unix) || defined(_unix_)
+#pragma message "The Project is compiling on the Unix platform"
+#elif !(defined(_WIN64))
+#error Unknown platform
+#endif
+
 int main(int args, char * argv[]){
     if(args > 0){
         cout << "请输入内存大小:";

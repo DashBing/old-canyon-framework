@@ -1,5 +1,1 @@
-pull:
-	git pull
-
-push:
-	git push origin master
+include makefiles/main.mk
