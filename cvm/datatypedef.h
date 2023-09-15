@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C++" {
-#endif
-
 #include "types.h"
 
 #ifndef _CVM_DATATYPEDEF_H
@@ -27,8 +23,4 @@ typedef struct command_data{
 } command;
 
 #pragma pack()
-#endif
-
-#ifdef __cplusplus
-}
 #endif

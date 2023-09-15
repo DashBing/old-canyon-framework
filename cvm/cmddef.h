@@ -1,7 +1,3 @@
-#ifdef __cplusplus
-extern "C++" {
-#endif
-
 #ifndef _CVM_CMDDEF_H
 #define _CVM_CMDDEF_H
 
@@ -68,8 +64,4 @@ typedef enum command_index{
     io_om,
 } cmd_index;
 
-#endif
-
-#ifdef __cplusplus
-}
 #endif

@@ -1,16 +1,12 @@
 #include <cstdio>
 #include "vmclass.hpp"
+#include "vm_template.hpp"
 #include "cmddef.h"
 #include "datatypedef.h"
 #include "resdef.h"
 
 #ifndef _CVM_RUNNERS_HPP
 #define _CVM_RUNNERS_HPP
-
-#ifndef vm_template
-#define vm_template template<UINT16 res_size>
-#define _CVM_RUNNERS_HPP_INLINEDEF_VM_TEMP
-#endif
 
 vm_template
 bool VM<res_size>::run_command(command cmd){
@@ -194,10 +190,5 @@ void VM<res_size>::run(UINT64 entry0){
         tmp = run_command(*dd);
     }
 }
-
-#ifdef _CVM_RUNNERS_HPP_INLINEDEF_VM_TEMP
-#undef vm_template
-#undef _CVM_RUNNERS_HPP_INLINEDEF_VM_TEMP
-#endif
 
 #endif
