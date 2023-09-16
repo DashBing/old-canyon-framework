@@ -28,8 +28,8 @@ make-build-dir:
 
 .PHONY:clean
 clean:
-	$(RM) build
-	$(RMDIR) build
+	@$(RM) $(BUILD_DIR)
+	@$(RMDIR) $(BUILD_DIR)
 
 include $(build-incdir)cvm-runner.mk
 include $(build-incdir)cvm-dll.mk
