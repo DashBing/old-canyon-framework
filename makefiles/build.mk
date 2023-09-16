@@ -8,7 +8,7 @@ else
 	RM := rm -f
 	RMDIR := rm -rf
 	RNM := mv
-	DLL_OUT_TYPE := .a
+	DLL_OUT_TYPE := .so
 	FILE_OUT_TYPE :=
 endif
 
