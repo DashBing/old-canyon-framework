@@ -13,6 +13,11 @@ bool VM<res_size>::run_command(command cmd){
     cmd_index tmp;
     tmp = (cmd_index)cmd.cmd;
     switch (tmp){
+    case null:
+        break;
+
+
+
     case mov_i8tr:  // 将指令数据中的数据写到寄存器
         set_res_chr(RES_DE, cmd.data.data8);
         break;

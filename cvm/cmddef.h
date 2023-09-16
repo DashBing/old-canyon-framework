@@ -14,7 +14,7 @@ typedef enum command_index{
     mov_rtrm,
 
     // 保护模式指令 与 系统调用指令
-    set_prot = 0x10,  // 设置保护模式索引表
+    set_prot,  // 设置保护模式索引表
     jmp_prot,  // 跳转并开始保护
     stop_prot,  // 终止保护模式
     stop_pg,  // 中断程序 按照中断信息码查询程序使用内核镜像映射的中断处理程序地址
@@ -22,7 +22,7 @@ typedef enum command_index{
     sys,  // 跳转到内核区域的虚拟地址, 控制权交给内核空间, 并暂时转到内核模式
 
     // 跳转指令
-    jmp_ti_if = 0x20,
+    jmp_ti_if,
     jmp_ti_ifn,
     jmp_tr_if,
     jmp_tr_ifn,
@@ -30,7 +30,7 @@ typedef enum command_index{
     jmp_tm_ifn,
 
     // 基本数学运算
-    l_sal8 = 0x30,  // 左移运算
+    l_sal8 = 0x20,  // 左移运算
     l_sal64,
     l_sar8,  // 右移运算
     l_sar64,
@@ -38,7 +38,7 @@ typedef enum command_index{
     l_and,
     l_or,
     l_xor,
-    l_not,  // 0x37
+    l_not,
 
     c_eq8,
     c_eq64,
@@ -47,17 +47,17 @@ typedef enum command_index{
     c_low8,
     c_low64,
 
-    b_add8,  // 0x3e
+    b_add8,
     b_add64,
     b_sub8,
     b_sub64,
     b_mcl8,
     b_mcl64,
     b_div8,
-    b_div64,  // 0x45
+    b_div64,
 
     // 基本io控制
-    io_im = 0x50,
+    io_im = 0x40,
     io_ir,
     io_oi8,
     io_oi64,
