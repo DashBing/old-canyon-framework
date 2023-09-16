@@ -15,4 +15,4 @@ make-build-dir:
 
 build-cvm-runner:
 	@make make-build-dir
-	g++ cvm-runner/main.cpp -o __build__/cvm-runner$(FILE_OUT_TYPE)
+	g++ cvm-runner/main.cpp -o $(BUILD_DIR)/cvm-runner$(FILE_OUT_TYPE)
