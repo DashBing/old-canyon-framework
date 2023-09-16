@@ -1,11 +1,6 @@
-cvm-runner.exe:$(cvm-req)
-	g++ cvm-runner/main.cpp -o $(BUILD_DIR)/cvm-runner$(FILE_OUT_TYPE)
+#cvm-runner.exe:$(cvm-req)
 
-.PHONY:build-cvm-runner
-build-cvm-runner:
-	$(make) make-build-dir
-	$(make) cvm-runner.exe
-
-.PHONY:clean-cvm-runner
-clean-cvm-runner:
-	rmdir $(BUILD_DIR)
+#.PHONY:build-cvm-runner
+build-cvm-runner:$(cvm-req) $(BUILD_DIR)/cvm$(DLL_OUT_TYPE)
+	g++ $(BUILD_DIR)/cvm$(DLL_OUT_TYPE) cvm-runner/main.cpp -o $(BUILD_DIR)/cvm-runner$(FILE_OUT_TYPE)
+#$(make) cvm-runner.exe

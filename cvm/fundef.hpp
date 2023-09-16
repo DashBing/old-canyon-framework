@@ -88,7 +88,7 @@ UINT64 VM<res_size>::get_res(UINT16 index){  // 读寄存器
 }
 
 vm_template
-void VM<res_size>::set_mem(UINT64 index, UINT8 value, UINT64 start=0, UINT64 end=0){
+void VM<res_size>::set_mem(UINT64 index, UINT8 value, UINT64 start, UINT64 end){
     if(end==0)end=memlen-1;  // 注意, 有可能导致安全问题, 注意防护
     if(!(isin_kernel(index+start) && !(isin_kernel(get_res(RES_LN))))){
         if(index+start <= end){
@@ -98,7 +98,7 @@ void VM<res_size>::set_mem(UINT64 index, UINT8 value, UINT64 start=0, UINT64 end
 }
 
 vm_template
-UINT8 VM<res_size>::get_mem(UINT64 index, UINT64 start=0, UINT64 end=0){
+UINT8 VM<res_size>::get_mem(UINT64 index, UINT64 start, UINT64 end){
     if(end==0)end=memlen-1;  // 注意, 有可能导致安全问题, 注意防护
     if(index+start <= end)
         return(mem[index+start]);

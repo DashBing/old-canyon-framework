@@ -2,7 +2,6 @@
 #include <fstream>
 #include <cstdlib>
 #include <cctype>
-#define cvm_static
 #include "../cvm/cvm.hpp"
 using namespace std;
 

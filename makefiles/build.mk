@@ -1,6 +1,14 @@
-ifeq ($(OS), Windows_NT)
+ifeq ($(OS),Windows_NT)
+	RM := del /q
+	RMDIR := rmdir
+	RNM := ren
+	DLL_OUT_TYPE := .dll
 	FILE_OUT_TYPE := .exe
 else
+	RM := rm -f
+	RMDIR := rm -rf
+	RNM := mv
+	DLL_OUT_TYPE := .a
 	FILE_OUT_TYPE :=
 endif
 
@@ -11,12 +19,17 @@ BUILD_DIR := build
 include $(incdir)requires.mk
 
 build:
+	$(make) make-build-dir
+	$(make) build-cvm-dll
 	$(make) build-cvm-runner
 
 make-build-dir:
 	mkdir $(BUILD_DIR)
 
+.PHONY:clean
 clean:
-	$(make) clean-cvm-runner
+	$(RM) build
+	$(RMDIR) build
 
 include $(build-incdir)cvm-runner.mk
+include $(build-incdir)cvm-dll.mk
