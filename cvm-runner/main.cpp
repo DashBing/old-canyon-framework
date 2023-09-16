@@ -1,8 +1,9 @@
+#include "../cvm/cvm.hpp"
+
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
 #include <cctype>
-#include "../cvm/cvm.hpp"
 using namespace std;
 
 #define cases(c) case c: mem_reallen *= 1024;
