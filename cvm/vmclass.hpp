@@ -23,8 +23,8 @@ class VM{
     UINT8 get_res_chr(UINT16 index);
     void set_res(UINT16 index, UINT64 value);
     UINT64 get_res(UINT16 index);
-    void set_mem(UINT64 index, UINT8 value, UINT64 start, UINT64 end);
-    UINT8 get_mem(UINT64 index, UINT64 start, UINT64 end);
+    void set_mem(UINT64 index, UINT8 value, UINT64 start=0, UINT64 end=0);
+    UINT8 get_mem(UINT64 index, UINT64 start=0, UINT64 end=0);
     bool isin_kernel(UINT64 adr);
     bool run_command(command cmd);
     void run(UINT64 entry0);
