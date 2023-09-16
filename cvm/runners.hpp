@@ -184,6 +184,8 @@ bool VM<res_size>::run_command(command cmd){
         putchar(get_mem(cmd.data.mem));
         break;
 
+
+
     default:
         break;
     }
