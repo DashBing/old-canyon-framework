@@ -14,7 +14,7 @@ class VM{
     public:
     UINT64 res[res_size - 1];  // 寄存器数组, 大小由模板决定
     public:
-    VM();
+    VM(){};
     VM(char * mem_i, UINT64 memlen_i);
     VM(UINT64 memlen_i);
     void reset();
@@ -28,7 +28,7 @@ class VM{
     bool isin_kernel(UINT64 adr);
     bool run_command(command cmd);
     void run(UINT64 entry0);
-    ~VM();
+    ~VM(){};
 };
 
 #ifdef cvm_static

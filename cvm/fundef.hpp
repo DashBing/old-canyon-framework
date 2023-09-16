@@ -9,9 +9,6 @@
 #define _CVM_FUNDEF_HPP
 
 vm_template
-VM<res_size>::VM(){}
-
-vm_template
 VM<res_size>::VM(char * mem_i, UINT64 memlen_i){
     set_mem_adr(mem_i, memlen_i);
 }
@@ -125,8 +122,5 @@ bool VM<res_size>::isin_kernel(UINT64 adr){
         return(true);
     }
 }
-
-vm_template
-VM<res_size>::~VM(){}
 
 #endif
