@@ -59,7 +59,8 @@ typedef enum command_index{
     // 基本io控制
     io_im = 0x50,
     io_ir,
-    io_oi,
+    io_oi8,
+    io_oi64,
     io_or,
     io_om,
 } cmd_index;

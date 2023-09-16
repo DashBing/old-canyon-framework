@@ -164,8 +164,13 @@ bool VM<res_size>::run_command(command cmd){
     case io_ir:
         set_res_chr(cmd.data.res.a, getchar());
         break;
-    case io_oi:
+    case io_oi8:
         putchar(cmd.data.data8);
+        break;
+    case io_oi64:
+        for(int i = 0; i<8; i++){
+            putchar((char)(cmd.data.data64&(0xff<<8*(7-i))));
+        }
         break;
     case io_or:
         putchar(get_res_chr(cmd.data.res.a));
