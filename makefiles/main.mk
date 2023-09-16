@@ -1,2 +1,3 @@
-include makefiles/build.mk
-include makefiles/git.mk
+incdir := makefiles/
+include $(incdir)build.mk
+include $(incdir)git.mk

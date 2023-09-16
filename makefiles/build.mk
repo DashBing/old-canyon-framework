@@ -4,15 +4,19 @@ else
 	FILE_OUT_TYPE :=
 endif
 
+make := make
+build-incdir := $(incdir)project-make/
 BUILD_DIR := build
 
-build:
-	@make build-cvm-runner
+include $(incdir)requires.mk
 
-.PHONY:make-build-dir
+build:
+	$(make) build-cvm-runner
+
 make-build-dir:
 	mkdir $(BUILD_DIR)
 
-build-cvm-runner:
-	@make make-build-dir
-	g++ cvm-runner/main.cpp -o $(BUILD_DIR)/cvm-runner$(FILE_OUT_TYPE)
+clean:
+	$(make) clean-cvm-runner
+
+include $(build-incdir)cvm-runner.mk
