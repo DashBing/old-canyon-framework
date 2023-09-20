@@ -21,7 +21,7 @@ include $(incdir)requires.mk
 build:
 	$(make) make-build-dir
 	$(make) build-cvm-dll
-	$(make) build-cvm-runner
+	$(make) build-cyv
 
 make-build-dir:
 	mkdir $(BUILD_DIR)
@@ -31,5 +31,5 @@ clean:
 	@$(RM) $(BUILD_DIR)
 	@$(RMDIR) $(BUILD_DIR)
 
-include $(build-incdir)cvm-runner.mk
+include $(build-incdir)cyv.mk
 include $(build-incdir)cvm-dll.mk
