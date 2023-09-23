@@ -1,3 +1,4 @@
+#include "../cvm/dllexport.h"
 #include "../cvm/cvm.hpp"
 
 #include <iostream>
@@ -59,7 +60,7 @@ int main(int args, char * argv[]){
                 memlen += sizeof(command);
             }
         }
-        VM mainvm;
+        VM<16> mainvm;
         mainvm.set_mem_adr(mem, mem_reallen);
         mainvm.run(0);
         free(mem);
