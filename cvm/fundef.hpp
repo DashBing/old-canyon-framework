@@ -9,12 +9,26 @@
 #define _CVM_FUNDEF_HPP
 
 vm_template
+void VM<res_size>::init(){
+    res = {};
+    prot_start = 0;
+    prot_end = 0;
+}
+
+vm_template
+VM<res_size>::VM(){
+    init();
+}
+
+vm_template
 VM<res_size>::VM(char * mem_i, UINT64 memlen_i){
+    init();
     set_mem_adr(mem_i, memlen_i);
 }
 
 vm_template
 VM<res_size>::VM(UINT64 memlen_i){
+    init();
     mem = (char *)calloc(memlen_i, sizeof(char));
 }
 
@@ -85,7 +99,8 @@ UINT64 VM<res_size>::get_res(UINT16 index){  // 读寄存器
 }
 
 vm_template
-void VM<res_size>::set_mem(UINT64 index, UINT8 value, UINT64 start, UINT64 end){
+void VM<res_size>::set_mem(UINT64 index, UINT8 value){
+    UINT64 start=prot_start, end=prot_end;
     if(end==0)end=memlen-1;  // 注意, 有可能导致安全问题, 注意防护
     if(!(isin_kernel(index+start) && !(isin_kernel(get_res(RES_LN))))){
         if(index+start <= end){
@@ -95,7 +110,8 @@ void VM<res_size>::set_mem(UINT64 index, UINT8 value, UINT64 start, UINT64 end){
 }
 
 vm_template
-UINT8 VM<res_size>::get_mem(UINT64 index, UINT64 start, UINT64 end){
+UINT8 VM<res_size>::get_mem(UINT64 index){
+    UINT64 start=prot_start, end=prot_end;
     if(end==0)end=memlen-1;  // 注意, 有可能导致安全问题, 注意防护
     if(index+start <= end)
         return(mem[index+start]);
