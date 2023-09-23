@@ -1,0 +1,1 @@
+#define cvm_static
