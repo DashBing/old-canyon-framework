@@ -1,5 +1,7 @@
 #include "types.h"
 #include "datatypedef.h"
+
+#define DLL_EXPORT
 #include "dllexport.h"
 
 #ifndef _CVM_VMCLASS_HPP
