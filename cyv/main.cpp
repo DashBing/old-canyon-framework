@@ -59,7 +59,8 @@ int main(int args, char * argv[]){
                 memlen += sizeof(command);
             }
         }
-        VM mainvm(mem, mem_reallen);
+        VM mainvm;
+        mainvm.set_mem_adr(mem, mem_reallen);
         mainvm.run(0);
         free(mem);
     }

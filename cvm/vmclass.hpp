@@ -31,7 +31,7 @@ class TEMPLATE_EXPORT VM{
     bool isin_kernel(UINT64 adr);
     bool mem_acc_w(UINT64 index);
     bool run_command(command cmd);
-    void run(UINT64 entry0);
+    void run(UINT64 entry0=0);
     ~VM(){};
 };
 
