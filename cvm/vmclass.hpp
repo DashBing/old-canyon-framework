@@ -28,6 +28,7 @@ class VM{
     void set_mem(UINT64 index, UINT8 value);
     UINT8 get_mem(UINT64 index);
     bool isin_kernel(UINT64 adr);
+    bool mem_acc_w(UINT64 index);
     bool run_command(command cmd);
     void run(UINT64 entry0);
     ~VM(){};
