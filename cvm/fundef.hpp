@@ -102,7 +102,7 @@ vm_template
 void VM<res_size>::set_mem(UINT64 index, UINT8 value){
     UINT64 start=prot_start, end=prot_end;
     if(end==0)end=memlen-1;  // 注意, 有可能导致安全问题, 注意防护
-    if(is_access_w(index)){
+    if(mem_acc_w(index)){
         if(index+start <= end){
             mem[index+start] = value;
         }
