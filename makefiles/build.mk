@@ -16,6 +16,8 @@ make := make
 build-incdir := $(incdir)project-make/
 BUILD_DIR := build
 
+char_set := -fexecl-charset=utf-8
+
 include $(incdir)requires.mk
 
 build:
