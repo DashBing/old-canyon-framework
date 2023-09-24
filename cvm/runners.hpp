@@ -33,16 +33,39 @@ bool VM<res_size>::run_command(command cmd){
     case mov_r8tr:
         set_res_chr(cmd.data.res.b, get_res_chr(cmd.data.res.a));
         break;
+    case mov_r8tr_if:
+        if(get_res_chr(cmd.data.res.c))set_res_chr(cmd.data.res.b, get_res_chr(cmd.data.res.a));
+        break;
+    case mov_r8tr_ifn:
+        if(!get_res_chr(cmd.data.res.c))set_res_chr(cmd.data.res.b, get_res_chr(cmd.data.res.a));
+        break;
     case mov_r64tr:
         set_res(cmd.data.res.b, get_res(cmd.data.res.a));
+        break;
+    case mov_r64tr_if:
+        if(get_res_chr(cmd.data.res.c))set_res(cmd.data.res.b, get_res(cmd.data.res.a));
+        break;
+    case mov_r64tr_ifn:
+        if(!get_res_chr(cmd.data.res.c))set_res(cmd.data.res.b, get_res(cmd.data.res.a));
         break;
     case mov_rmtr:
         set_res_chr(cmd.data.res.b, get_mem(get_res(cmd.data.res.a)));
         break;
+    case mov_rmtr_if:
+        if(get_res_chr(cmd.data.res.c))set_res_chr(cmd.data.res.b, get_mem(get_res(cmd.data.res.a)));
+        break;
+    case mov_rmtr_ifn:
+        if(!get_res_chr(cmd.data.res.c))set_res_chr(cmd.data.res.b, get_mem(get_res(cmd.data.res.a)));
+        break;
     case mov_rtrm:
         set_mem(get_res(cmd.data.res.b), get_res_chr(cmd.data.res.a));
         break;
-
+    case mov_rtrm_if:
+        if(get_res_chr(cmd.data.res.c))set_mem(get_res(cmd.data.res.b), get_res_chr(cmd.data.res.a));
+        break;
+    case mov_rtrm_ifn:
+        if(!get_res_chr(cmd.data.res.c))set_mem(get_res(cmd.data.res.b), get_res_chr(cmd.data.res.a));
+        break;
 
 
 
@@ -52,6 +75,10 @@ bool VM<res_size>::run_command(command cmd){
 
 
 
+    case jmp_ti:
+        set_res(RES_LN, cmd.data.data64);
+        return(false);
+        break;
     case jmp_ti_if:
         if(get_res(RES_DE)){
             set_res(RES_LN, cmd.data.data64);
@@ -64,6 +91,10 @@ bool VM<res_size>::run_command(command cmd){
         }
         return(false);
         break;
+    case jmp_tr:
+        set_res(RES_LN, cmd.data.res.a);
+        return(false);
+        break;
     case jmp_tr_if:
         if(get_res(cmd.data.res.a)){
             set_res(RES_LN, cmd.data.res.b);
@@ -74,6 +105,10 @@ bool VM<res_size>::run_command(command cmd){
         if(!(get_res(cmd.data.res.a))){
             set_res(RES_LN, cmd.data.res.b);
         }
+        return(false);
+        break;
+    case jmp_tm:
+        set_res(RES_LN, get_mem(cmd.data.mem));
         return(false);
         break;
     case jmp_tm_if:
@@ -169,6 +204,9 @@ bool VM<res_size>::run_command(command cmd){
     case io_ir:
         set_res_chr(cmd.data.res.a, getchar());
         break;
+    case io_irm:
+        set_mem(get_res(cmd.data.res.a), getchar());
+        break;
     case io_oi8:
         putchar(cmd.data.data8);
         break;
@@ -177,8 +215,13 @@ bool VM<res_size>::run_command(command cmd){
             putchar((char)(cmd.data.data64&(0xff<<8*(7-i))));
         }
         break;
-    case io_or:
+    case io_or8:
         putchar(get_res_chr(cmd.data.res.a));
+        break;
+    case io_or64:
+        for(int i = 0; i<8; i++){
+            putchar((char)(get_res(cmd.data.res.a)&(0xff<<8*(7-i))));
+        }
         break;
     case io_om:
         putchar(get_mem(cmd.data.mem));

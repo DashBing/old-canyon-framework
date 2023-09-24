@@ -52,7 +52,7 @@ void VM<res_size>::set_res_chr(UINT16 index, UINT8 value){  // 写寄存器(按�
     UINT16 a, b;
     UINT64 val = value;
     a = index / 8;
-    if(!(RES_RN(a)==RES_PR && !(isin_kernel(get_res(RES_LN))))){
+    if(res_acc_w(index)){
         b = index % 8;
         val <<= (8 * (7 - b));
         if(a == 0)
@@ -80,7 +80,7 @@ UINT8 VM<res_size>::get_res_chr(UINT16 index){  // 读寄存器(按字节)
 
 vm_template
 void VM<res_size>::set_res(UINT16 index, UINT64 value){  // 写寄存器
-    if(!(index==RES_PR && !(isin_kernel(get_res(RES_LN))))){
+    if(res_acc_w(index)){
         index = index / 8;
         if(index == 0)
             prot_res = value; 
@@ -143,6 +143,11 @@ vm_template
 bool VM<res_size>::mem_acc_w(UINT64 index){
     UINT64 start=prot_start;
     return(!(isin_kernel(index+start) && !(isin_kernel(get_res(RES_LN)))));
+}
+
+vm_template
+bool VM<res_size>::res_acc_w(UINT16 index){
+    return(!(RES_RN(RES_RN_DE(index))==RES_PR && !(isin_kernel(get_res(RES_LN)))));
 }
 
 #endif

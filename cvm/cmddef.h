@@ -9,9 +9,17 @@ typedef enum command_index{
     mov_fm,  // 从内存地址读取数据到默认寄存器
     mov_tm,  // 从默认寄存器读取数据(低8位)，写入到内存地址
     mov_r8tr,  // 从寄存器地址读取数据，写入到内存地址
+    mov_r8tr_if,
+    mov_r8tr_ifn,
     mov_r64tr,
+    mov_r64tr_if,
+    mov_r64tr_ifn,
     mov_rmtr,
+    mov_rmtr_if,
+    mov_rmtr_ifn,
     mov_rtrm,
+    mov_rtrm_if,
+    mov_rtrm_ifn,
 
     // 保护模式指令 与 系统调用指令
     set_prot,  // 设置保护模式索引表
@@ -22,10 +30,13 @@ typedef enum command_index{
     sys,  // 跳转到内核区域的虚拟地址, 控制权交给内核空间, 并暂时转到内核模式
 
     // 跳转指令
+    jmp_ti,
     jmp_ti_if,
     jmp_ti_ifn,
+    jmp_tr,
     jmp_tr_if,
     jmp_tr_ifn,
+    jmp_tm,
     jmp_tm_if,
     jmp_tm_ifn,
 
@@ -59,9 +70,11 @@ typedef enum command_index{
     // 基本io控制
     io_im = 0x40,
     io_ir,
+    io_irm,
     io_oi8,
     io_oi64,
-    io_or,
+    io_or8,
+    io_or64,
     io_om,
 } cmd_index;
 
