@@ -13,7 +13,7 @@
 + **CYS** - ***<font color="red">C</font>an<font color="red">y</font>on Framework A<font color="red">s</font>sembler Basic Edition***
 > 基本汇编器，按照本框架下的汇编语法规则
 
-+ **CYSP** - ***<font color="red">C</font>an<font color="red">y</font>on Framework A<font color="red">s</font>sembler Plus Edition***
++ **CYSP** - ***<font color="red">C</font>an<font color="red">y</font>on Framework A<font color="red">s</font>sembler <font color="red">P</font>lus Edition***
 > 增强版汇编器，适应主流汇编语法，转译成 ***CYS*** 后编译为字节码
 
 
