@@ -1,4 +1,3 @@
-#include "../cvm/dllexport.h"
 #include "../cvm/cvm.hpp"
 
 #include <iostream>
