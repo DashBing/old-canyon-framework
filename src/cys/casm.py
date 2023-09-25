@@ -68,10 +68,10 @@ def tobytes(code:list) -> bytearray:
     s = ""
     for i in code:
         for j in range(len(i)):
-            i[j] = i[j].upper()
+            i[j] = i[j].lower()
         match code[0]:
-            case "MOV":
+            case "mov":
                 pass
 
-def compile(code:str) -> bytearray:
-    pass
+""" def compile(code:str) -> bytearray:
+    pass """
