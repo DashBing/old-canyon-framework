@@ -4,11 +4,13 @@
 #include "resdef.h"
 #include "types.h"
 #include "inc_clibs.h"
+#include "vm_template.hpp"
 
 #ifndef _CVM_RUNNERS_HPP
 #define _CVM_RUNNERS_HPP
 
-bool VM::run_command(command cmd){
+vm_template
+bool VM<res_size>::run_command(command cmd){
     cmd_index tmp;
     tmp = (cmd_index)cmd.cmd;
     switch (tmp){
@@ -235,7 +237,8 @@ bool VM::run_command(command cmd){
     return(false);
 }
 
-void VM::run(UINT64 entry0){
+vm_template
+void VM<res_size>::run(UINT64 entry0){
     set_res(RES_LN, entry0);
     bool tmp = 0;
     while (!tmp){

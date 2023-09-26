@@ -1,6 +1,6 @@
 #include "types.h"
 #include "datatypedef.h"
-#include "resdef.h"
+#include "vm_template.hpp"
 
 #ifndef _CVM_VMCLASS_HPP
 #define _CVM_VMCLASS_HPP
@@ -10,6 +10,7 @@ static UINT64 memlen;  // 内存大小(字节)
 static UINT64 prot_res;  // 第一个寄存器(特殊所以分离)
 static char * mem;  // 内存地址
 
+vm_template
 class VM{
     public:
     UINT64 res[res_size - 1];  // 寄存器数组, 大小由模板决定
@@ -35,6 +36,8 @@ class VM{
     void run(UINT64 entry0=0);
     ~VM(){};
 };
+
+typedef VM<16> VMBasic;
 
 #ifdef cvm_static
 #include "fundef.hpp"
