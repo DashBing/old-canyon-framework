@@ -210,9 +210,14 @@ bool VM::run_command(command cmd){
         putchar(cmd.data.data8);
         break;
     case io_oi64:
-        for(int i = 0; i<8; i++){
-            putchar((char)(cmd.data.data64&(0xff<<8*(7-i))));
-        }
+        putchar(cmd.data.datas.I0);
+        putchar(cmd.data.datas.I1);
+        putchar(cmd.data.datas.I2);
+        putchar(cmd.data.datas.I3);
+        putchar(cmd.data.datas.I4);
+        putchar(cmd.data.datas.I5);
+        putchar(cmd.data.datas.I6);
+        putchar(cmd.data.datas.I7);
         break;
     case io_or8:
         putchar(get_res_chr(cmd.data.res.a));
