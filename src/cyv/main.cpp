@@ -6,7 +6,7 @@
 #include <cctype>
 using namespace std;
 
-#define cases(c) case c: mem_reallen *= 1024;
+#define cases(c, label, jmp_label) case c: label: mem_reallen *= 1024; goto jmp_label; break;
 
 #if defined(_WIN32) && !defined(_WIN64)
 #pragma message "The Project is compiling on the Win32 platform"
@@ -25,30 +25,34 @@ using namespace std;
 #endif
 
 int main(int args, char * argv[]){
-    if(args > 0){
-        cout << "è¯·è¾“å…¥å†…å­˜å¤§å°:";
+    if(args > 1){
+        cout << "ÇëÊäÈëÄÚ´æ´óÐ¡:";
         UINT64 mem_reallen;
         cin >> mem_reallen;
         char mode;
-        cout << "å†…å­˜è®¡é‡å•ä½(æ”¯æŒK, M, G, T, P, E, è¾“å…¥Dæˆ–å…¶ä»–éžæ­¤èŒƒå›´çš„å­—æ¯åˆ™ä½¿ç”¨å­—èŠ‚è®¡é‡):";
+        cout << "ÄÚ´æ¼ÆÁ¿µ¥Î»(Ö§³ÖK, M, G, T, P, E, ÊäÈëD»òÆäËû·Ç´Ë·¶Î§µÄ×ÖÄ¸ÔòÊ¹ÓÃ×Ö½Ú¼ÆÁ¿):";
         cin >> mode;
         mode = toupper(mode);
+        cout << mode << endl;
         switch (mode){
-            cases('E') cases('P') cases('T') cases('G') cases('M')
+            cases('E', case_eb, case_pb) cases('P', case_pb, case_tb) cases('T', case_tb, case_gb) cases('G', case_gb, case_mb) cases('M', case_mb, case_kb)
             case 'K':
+                case_kb:
                 mem_reallen *= 1024;
                 break;
             default:
                 break;
         }
+        cout << mem_reallen << endl;
         char * mem = (char *)calloc(mem_reallen, sizeof(char));
         UINT64 memlen = 0;
-        for(int i = 0; i<args; i++){
+        for(int i = 1; i<args; i++){
             ifstream f;
             command tmp = {};
+            cout << argv[i] << endl;
             f.open(argv[i], ios::in | ios::binary);
             if(f.is_open() == false){
-                cout << "é”™è¯¯: æ‰“å¼€æ–‡ä»¶: \"" << argv[i] << "\" æ—¶å¤±è´¥!" << endl;
+                cout << "´íÎó: ´ò¿ªÎÄ¼þ: \"" << argv[i] << "\" Ê±Ê§°Ü!" << endl;
                 continue;
             }
             while (f.read((char *)&tmp, sizeof(command))){
@@ -59,13 +63,12 @@ int main(int args, char * argv[]){
                 memlen += sizeof(command);
             }
         }
-        VM mainvm;
-        mainvm.set_mem_adr(mem, mem_reallen);
+        VM mainvm(mem, mem_reallen);
         mainvm.run(0);
         free(mem);
     }
     else{
-        cout << "é”™è¯¯: æ²¡æœ‰å‚æ•°" << endl;
+        cout << "´íÎó: Ã»ÓÐ²ÎÊý" << endl;
     }
     return(0);
 }
