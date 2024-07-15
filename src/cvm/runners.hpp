@@ -3,7 +3,7 @@
 #include "datatypedef.h"
 #include "resdef.h"
 #include "types.h"
-#include "inc_clibs.h"
+#include "inc_clibs.hpp"
 
 #ifdef debug
 #include <iostream>
@@ -13,6 +13,8 @@ using std::endl;
 
 #ifndef _CVM_RUNNERS_HPP
 #define _CVM_RUNNERS_HPP
+
+namespace canyon{
 
 bool VM::run_command(command cmd){
     cmd_index tmp;
@@ -256,6 +258,8 @@ void VM::run(UINT64 entry0){
         #endif
         tmp = run_command(*dd);
     }
+}
+
 }
 
 #endif

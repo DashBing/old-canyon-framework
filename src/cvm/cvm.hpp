@@ -3,6 +3,6 @@
 #include "cmddef.h"
 #include "datatypedef.h"
 #include "resdef.h"
-#include "inc_clibs.h"
+#include "inc_clibs.hpp"
 #include "types.h"
 #endif

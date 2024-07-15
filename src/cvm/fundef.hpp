@@ -2,10 +2,12 @@
 #include "types.h"
 #include "datatypedef.h"
 #include "resdef.h"
-#include "inc_clibs.h"
+#include "inc_clibs.hpp"
 
 #ifndef _CVM_FUNDEF_HPP
 #define _CVM_FUNDEF_HPP
+
+namespace canyon{
 
 VM::VM(){
     init();
@@ -138,6 +140,8 @@ bool VM::mem_acc_w(UINT64 index){
 
 bool VM::res_acc_w(UINT16 index){
     return(!(RES_RN(RES_RN_DE(index))==RES_PR && !(isin_kernel(get_res(RES_LN)))));
+}
+
 }
 
 #endif

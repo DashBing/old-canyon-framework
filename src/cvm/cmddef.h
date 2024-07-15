@@ -1,6 +1,8 @@
 #ifndef _CVM_CMDDEF_H
 #define _CVM_CMDDEF_H
 
+namespace canyon{
+
 typedef enum command_index : UINT16{
     null = 0x0,
     // mov指令
@@ -77,5 +79,7 @@ typedef enum command_index : UINT16{
     io_or64,
     io_om,
 } cmd_index;
+
+}
 
 #endif

@@ -5,6 +5,8 @@
 #ifndef _CVM_VMCLASS_HPP
 #define _CVM_VMCLASS_HPP
 
+namespace canyon{
+
 static bool prot;  // 是否开保护模式
 static UINT64 memlen;  // 内存大小(字节)
 static UINT64 prot_res;  // 第一个寄存器(特殊所以分离)
@@ -48,6 +50,8 @@ class VM{
     public:
     ~VM(){};
 };
+
+}
 
 #ifdef cvm_static
 #include "fundef.hpp"

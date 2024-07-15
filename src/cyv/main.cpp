@@ -1,4 +1,5 @@
 #include "../cvm/cvm.hpp"
+using namespace canyon;
 
 #include <iostream>
 #include <fstream>

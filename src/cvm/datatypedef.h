@@ -2,6 +2,9 @@
 
 #ifndef _CVM_DATATYPEDEF_H
 #define _CVM_DATATYPEDEF_H
+
+namespace canyon{
+
 #pragma pack(push, 1)
 
 typedef struct cmd_two_res{  // 用于同时存储两个寄存器地址的结构体
@@ -35,4 +38,7 @@ typedef struct command_data{
 } command;
 
 #pragma pack(pop)
+
+}
+
 #endif
