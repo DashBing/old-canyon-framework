@@ -1,7 +1,7 @@
 #ifndef _CVM_CMDDEF_H
 #define _CVM_CMDDEF_H
 
-typedef enum command_index{
+typedef enum command_index : UINT16{
     null = 0x0,
     // mov指令
     mov_i8tr = 0x1,  // 存数据到默认寄存器

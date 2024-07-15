@@ -2,7 +2,7 @@
 
 #ifndef _CVM_DATATYPEDEF_H
 #define _CVM_DATATYPEDEF_H
-#pragma pack(1)
+#pragma pack(push, 1)
 
 typedef struct cmd_two_res{  // 用于同时存储两个寄存器地址的结构体
     UINT16 a;  // 寄存器A
@@ -34,5 +34,5 @@ typedef struct command_data{
     cmd_union_data data;        // 寄存器地址2||内存地址||数据 共用一块区域
 } command;
 
-#pragma pack()
+#pragma pack(pop)
 #endif

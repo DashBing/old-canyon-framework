@@ -5,9 +5,11 @@
 #include "types.h"
 #include "inc_clibs.h"
 
+#ifdef debug
 #include <iostream>
 using std::cout;
 using std::endl;
+#endif
 
 #ifndef _CVM_RUNNERS_HPP
 #define _CVM_RUNNERS_HPP
@@ -249,7 +251,9 @@ void VM::run(UINT64 entry0){
     bool tmp = 0;
     while (!tmp){
         command * dd = (command *)(mem+get_res(RES_LN));
+        #ifdef debug
         cout << dd->cmd << endl;
+        #endif
         tmp = run_command(*dd);
     }
 }
