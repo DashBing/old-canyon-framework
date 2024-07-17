@@ -3,7 +3,7 @@
 #ifndef _CVM_RESDEF_H
 #define _CVM_RESDEF_H
 
-const UINT16 res_size = 16;
+const uint16_t res_size = 16;
 
 #define RES_RN(n) ((n)*8)
 #define RES_RN_DE(n) (((n)-(n)%8)/8)

@@ -28,7 +28,7 @@ using namespace std;
 int main(int args, char * argv[]){
     if(args > 1){
         cout << "请输入内存大小:";
-        UINT64 mem_reallen;
+        uint64_t mem_reallen;
         cin >> mem_reallen;
         char mode;
         cout << "内存计量单位(支持K, M, G, T, P, E, 输入D或其他非此范围的字母则使用字节计量):";
@@ -46,7 +46,7 @@ int main(int args, char * argv[]){
         }
         cout << mem_reallen << endl;
         char * mem = (char *)calloc(mem_reallen, sizeof(char));
-        UINT64 memlen = 0;
+        uint64_t memlen = 0;
         for(int i = 1; i<args; i++){
             ifstream f;
             command tmp = {};
@@ -58,7 +58,7 @@ int main(int args, char * argv[]){
             }
             while (f.read((char *)&tmp, sizeof(command))){
                 //mem = (char *)realloc(mem, memlen + sizeof(command));
-                for (UINT64 j = 0; j<sizeof(command); j++){
+                for (uint64_t j = 0; j<sizeof(command); j++){
                     mem[memlen + j] = ((char *)&tmp)[j];
                 }
                 memlen += sizeof(command);
