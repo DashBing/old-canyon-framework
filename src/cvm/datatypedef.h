@@ -8,32 +8,32 @@ namespace canyon{
 #pragma pack(push, 1)
 
 typedef struct cmd_two_res{  // 用于同时存储两个寄存器地址的结构体
-    UINT16 a;  // 寄存器A
-    UINT16 b;  // 寄存器B
-    UINT16 c;
+    uint16_t a;  // 寄存器A
+    uint16_t b;  // 寄存器B
+    uint16_t c;
 } cmd_resAB;
 
 typedef struct data64p8{
-    UINT8 I0;
-    UINT8 I1;
-    UINT8 I2;
-    UINT8 I3;
-    UINT8 I4;
-    UINT8 I5;
-    UINT8 I6;
-    UINT8 I7;
+    uint8_t I0;
+    uint8_t I1;
+    uint8_t I2;
+    uint8_t I3;
+    uint8_t I4;
+    uint8_t I5;
+    uint8_t I6;
+    uint8_t I7;
 } datas_type;
 
 typedef union cmd_union_data{  // 共用区域定义
-    UINT8 data8;  // 8位数据
+    uint8_t data8;  // 8位数据
     cmd_two_res res;   // 寄存器地址
     datas_type datas;
-    UINT64 mem;   // 内存地址
-    UINT64 data64;  // 64位数据
+    uint64_t mem;   // 内存地址
+    uint64_t data64;  // 64位数据
 } cmd_data;
 
 typedef struct command_data{
-    UINT16 cmd;  // 命令
+    uint16_t cmd;  // 命令
     cmd_union_data data;        // 寄存器地址2||内存地址||数据 共用一块区域
 } command;
 

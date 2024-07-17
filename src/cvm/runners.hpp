@@ -248,7 +248,7 @@ bool VM::run_command(command cmd){
     return(false);
 }
 
-void VM::run(UINT64 entry0){
+void VM::run(uint64_t entry0){
     set_res(RES_LN, entry0);
     bool tmp = 0;
     while (!tmp){

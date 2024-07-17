@@ -8,19 +8,19 @@
 namespace canyon{
 
 static bool prot;  // 是否开保护模式
-static UINT64 memlen;  // 内存大小(字节)
-static UINT64 prot_res;  // 第一个寄存器(特殊所以分离)
+static uint64_t memlen;  // 内存大小(字节)
+static uint64_t prot_res;  // 第一个寄存器(特殊所以分离)
 static char * mem;  // 内存地址
 
 class VM{
     public:
-    UINT64 res[res_size - 1];  // 寄存器数组, 大小由模板决定
-    UINT64 prot_start, prot_end;
+    uint64_t res[res_size - 1];  // 寄存器数组, 大小由模板决定
+    uint64_t prot_start, prot_end;
 
     public:
     VM();
-    VM(char * mem_i, UINT64 memlen_i);
-    VM(UINT64 memlen_i);
+    VM(char * mem_i, uint64_t memlen_i);
+    VM(uint64_t memlen_i);
 
     public:
     void clean_res();
@@ -28,24 +28,24 @@ class VM{
 
     public:
     void reset();
-    void set_mem_adr(char * mem_i, UINT64 memlen_i);
+    void set_mem_adr(char * mem_i, uint64_t memlen_i);
 
     public:
-    void set_res_chr(UINT16 index, UINT8 value);
-    UINT8 get_res_chr(UINT16 index);
-    void set_res(UINT16 index, UINT64 value);
-    UINT64 get_res(UINT16 index);
-    void set_mem(UINT64 index, UINT8 value);
-    UINT8 get_mem(UINT64 index);
+    void set_res_chr(uint16_t index, uint8_t value);
+    uint8_t get_res_chr(uint16_t index);
+    void set_res(uint16_t index, uint64_t value);
+    uint64_t get_res(uint16_t index);
+    void set_mem(uint64_t index, uint8_t value);
+    uint8_t get_mem(uint64_t index);
 
     public:
-    bool isin_kernel(UINT64 adr);
-    bool mem_acc_w(UINT64 index);
-    bool res_acc_w(UINT16 index);
+    bool isin_kernel(uint64_t adr);
+    bool mem_acc_w(uint64_t index);
+    bool res_acc_w(uint16_t index);
 
     public:
     bool run_command(command cmd);
-    void run(UINT64 entry0=0);
+    void run(uint64_t entry0=0);
 
     public:
     ~VM(){};

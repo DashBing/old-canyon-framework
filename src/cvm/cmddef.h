@@ -1,9 +1,11 @@
+#include "types.h"
+
 #ifndef _CVM_CMDDEF_H
 #define _CVM_CMDDEF_H
 
 namespace canyon{
 
-typedef enum command_index : UINT16{
+typedef enum command_index : uint16_t{
     null = 0x0,
     // mov指令
     mov_i8tr = 0x1,  // 存数据到默认寄存器
