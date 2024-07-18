@@ -1,6 +1,2 @@
-__pycache__
-
-build
-*.exe
-*.dll
-*.a
+__pycache__/
+build/
