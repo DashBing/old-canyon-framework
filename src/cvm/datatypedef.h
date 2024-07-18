@@ -25,7 +25,7 @@ typedef struct data64p8{
 } datas_type;
 
 typedef union cmd_union_data{  // 共用区域定义
-    uint8_t data8;  // 8位数据
+    //uint8_t data8;  // 8位数据
     cmd_two_res res;   // 寄存器地址
     datas_type datas;
     uint64_t mem;   // 内存地址
