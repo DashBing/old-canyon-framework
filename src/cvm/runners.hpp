@@ -16,6 +16,8 @@ using std::endl;
 
 namespace canyon{
 
+#define data8 datas.I0
+
 bool VM::run_command(command cmd){
     cmd_index tmp;
     tmp = (cmd_index)cmd.cmd;
@@ -259,6 +261,8 @@ void VM::run(uint64_t entry0){
         tmp = run_command(*dd);
     }
 }
+
+#undef data8
 
 }
 
