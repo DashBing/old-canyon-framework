@@ -9,6 +9,7 @@ using namespace std;
 
 #define cases(c, label, jmp_label) case c: label: mem_reallen *= 1024; goto jmp_label; break;
 
+#ifndef debug
 #if defined(_WIN32) && !defined(_WIN64)
 #pragma message "The Project is compiling on the Win32 platform"
 #elif defined(__ANDROID__)
@@ -23,6 +24,7 @@ using namespace std;
 #pragma message "The Project is compiling on the Unix platform"
 #elif !(defined(_WIN64))
 #error Unknown platform
+#endif
 #endif
 
 int main(int args, char * argv[]){
